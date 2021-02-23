@@ -183,6 +183,25 @@ public class BST_22ndFeb {
         return Math.max(left , right);
     }
 
+    int max = 0;
+    public int BTLongestUniversalPath(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int left = BTLongestUniversalPath(root.left);
+        int right = BTLongestUniversalPath(root.right);
+        int leftCheck = 0;
+        if (root.left != null && root.val == root.left.val) {
+            leftCheck += 1 + left;
+        }
+        int rightCheck = 0;
+        if (root.right != null && root.val == root.right.val) {
+            rightCheck += 1 + right;
+        }
+        max = Math.max(max, leftCheck + rightCheck);
+        return Math.max(leftCheck, rightCheck);
+    }
+
     public static void main(String[] args) {
         BST_22ndFeb tree = new BST_22ndFeb();
         tree.root = new TreeNode(10);
@@ -212,5 +231,7 @@ public class BST_22ndFeb {
         tree.insert(100);
         tree.inorder();
         tree.longestCount();
+        tree.BTLongestUniversalPath(tree.root);
+        System.out.println("max = " + tree.max);
     }
 }
