@@ -81,6 +81,29 @@ class SinglyLL {
         return pre;
     }
 
+    public void reverseInKGrp(int k) {
+        head = reverseKGrpHelper(head, k);
+    }
+
+    private Node reverseKGrpHelper(Node head, int k) {
+        if (head == null || k == 0) return head;
+        Node it = head;
+        Node pre = null;
+        Node temp = null;
+        int i = 0;
+        while (i < k && it != null) {//go to Null node
+            temp = it.next;//store for future use, its same as when we swapping 2 value
+            it.next = pre;
+            pre = it;
+            it = temp;
+            i++;
+        }
+        if (it != null) {
+            head.next = reverseKGrpHelper(it, k);
+        }
+        return pre;
+    }
+
     public void traverseLL() {
         Node t = head;
         while (t != null) {
@@ -113,5 +136,10 @@ public class LinkListImpl {
         ll.deleteLast();ll.traverseLL();
         ll.insertAtLast(999);ll.traverseLL();
         ll.reverseLL();ll.traverseLL();
+        ll.insertAtLast(18);
+        ll.insertAtLast(13);
+        ll.insertAtLast(14);ll.traverseLL();
+        ll.reverseInKGrp(3);ll.traverseLL();
+        ll.reverseInKGrp(2);ll.traverseLL();
     }
 }
