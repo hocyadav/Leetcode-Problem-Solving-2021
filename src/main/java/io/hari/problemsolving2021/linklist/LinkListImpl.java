@@ -44,8 +44,11 @@ class SinglyLL {
 
     public void deleteFirst() {
         if (head == null) return;
+        //m1
         final Node next = head.next;
-        head = next;
+        head = next;//jump to next step, thats all
+        //m2
+//        head = head.next;//jump to next node
     }
 
     public void deleteLast() {
