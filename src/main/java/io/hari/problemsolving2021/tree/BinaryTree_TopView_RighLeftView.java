@@ -169,3 +169,24 @@ public class BinaryTree_TopView_RighLeftView {
         tree.topViewVerticalViewBinaryTree();
     }
 }
+/**
+ *
+ 12
+ 10 12
+ 10 12 20
+ 10 11 12 20
+ 10 11 12 13 20
+ 9 10 11 12 13 20
+ 12 10 20 9 11 13
+ 0 [12]
+ 1 [10, 20]
+ 2 [9, 11, 13]
+ right view  = [12, 20, 13]
+
+ Top view / vertical view BT
+ 0 [12, 11, 13]
+ -1 [10]
+ -2 [9]
+ 1 [20]
+ *
+ */
