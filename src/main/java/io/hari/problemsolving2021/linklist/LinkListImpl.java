@@ -1,5 +1,8 @@
 package io.hari.problemsolving2021.linklist;
 
+import java.util.HashMap;
+import java.util.Map;
+
 class Node {
     int val;
     Node next;
@@ -20,13 +23,13 @@ class SinglyLL {
     //reverse in k grp
 
     public void insertAtFirstPlace(int val) {
-          Node n = new Node(val);
-          if (head == null) {
-              head = n;
-              return;
-          }
-          n.next = head;
-          head = n;
+        Node n = new Node(val);
+        if (head == null) {
+            head = n;
+            return;
+        }
+        n.next = head;
+        head = n;
     }
 
     public void insertAtLast(int val) {
@@ -61,6 +64,7 @@ class SinglyLL {
         }
         pre.next = null;//remove link to last node
     }
+
     public void reverseLL() {
         head = reverse();
     }
@@ -70,7 +74,7 @@ class SinglyLL {
         Node pre = null;//result pointer
         Node temp = null;//helper pointer
 
-        while (it != null) {
+        while (it != null) {// traverse all not null values
             temp = it.next;//4
 
             it.next = pre;//1
@@ -107,10 +111,38 @@ class SinglyLL {
     public void traverseLL() {
         Node t = head;
         while (t != null) {
-            System.out.print(t.val+" ");
+            System.out.print(t.val + " ");
             t = t.next;
         }
         System.out.println();
+    }
+
+    public void midElement() {
+        Node slow = head;//1 jump
+        Node fast = head;//2 jump
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        System.out.println("mid element val = " + slow.val);
+    }
+
+    public boolean cycleChecking() {
+        Node slow = head;
+        Node fast = head;
+
+        while (slow != null && fast != null && fast.next != null) {
+            slow = slow.next;//1 jumps
+            fast = fast.next.next;//2 jump
+            if (slow == fast) {
+                System.out.println("cycle found..");
+                return true;
+            }
+        }
+        System.out.println("cycle not found..");
+
+        return false;
     }
 }
 
@@ -131,15 +163,30 @@ public class LinkListImpl {
         ll.insertAtLast(30);
         ll.insertAtLast(40);
         ll.traverseLL();
-        ll.deleteLast();ll.traverseLL();
-        ll.deleteLast();ll.traverseLL();
-        ll.deleteLast();ll.traverseLL();
-        ll.insertAtLast(999);ll.traverseLL();
-        ll.reverseLL();ll.traverseLL();
+        ll.deleteLast();
+        ll.traverseLL();
+        ll.deleteLast();
+        ll.traverseLL();
+        ll.deleteLast();
+        ll.traverseLL();
+        ll.midElement();
+        ll.insertAtLast(999);
+        ll.traverseLL();
+        ll.reverseLL();
+        ll.traverseLL();
         ll.insertAtLast(18);
         ll.insertAtLast(13);
-        ll.insertAtLast(14);ll.traverseLL();
-        ll.reverseInKGrp(3);ll.traverseLL();
-        ll.reverseInKGrp(2);ll.traverseLL();
+        ll.insertAtLast(14);
+        ll.traverseLL();
+        ll.reverseInKGrp(3);
+        ll.traverseLL();
+        ll.reverseInKGrp(2);
+        ll.traverseLL();
+        ll.insertAtLast(12345);
+        ll.traverseLL();
+        ll.midElement();
+        ll.cycleChecking();
+        Map<Integer, Integer> map = new HashMap<>();
+        final Integer put = map.put(1, 2);
     }
 }
