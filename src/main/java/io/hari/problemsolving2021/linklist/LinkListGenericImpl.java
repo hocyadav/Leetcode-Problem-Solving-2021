@@ -28,7 +28,7 @@ class GenericLL<T> {
             return;
         }
         GenericNode<T> it = head;
-        while (it.next != null) {
+        while (it.next != null) {//traverse all
             it = it.next;
         }
         it.next = nn;
@@ -43,7 +43,7 @@ class GenericLL<T> {
         if (head == null) return;
         GenericNode<T> it = head;
         GenericNode<T> pre = null;
-        while (it.next != null) {
+        while (it.next != null) {//traverse all + store previous
             pre = it;
             it = it.next;
         }
@@ -54,7 +54,7 @@ class GenericLL<T> {
         head = reverseHelper(head);
     }
 
-    private GenericNode<T> reverseHelper(GenericNode<T> head) {
+    private GenericNode<T> reverseHelper(final GenericNode<T> head) {
         if (head == null) return null;
 
         GenericNode<T> it = head;
@@ -70,11 +70,11 @@ class GenericLL<T> {
         return pre;
     }
 
-    public void reverseInKGroup(int k) {
+    public void reverseInKGroup(final int k) {
         head = reverseInKGrpHelper(head, k);
     }
 
-    private GenericNode<T> reverseInKGrpHelper(GenericNode<T> head, int k) {
+    private GenericNode<T> reverseInKGrpHelper(GenericNode<T> head, final int k) {
         if (head == null || k == 0) return head;
 
         GenericNode<T> it = head;
