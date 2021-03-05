@@ -26,6 +26,8 @@ class BinaryTree {
      * logic :
      * 1. take map k : distance , v = list of nodes
      * 2. for each distance add node to value of map (i.e. list) [update map]
+     * Time Complexity = n (traversing BT)
+     * Space Complexity = n (storing all nodes)
      */
     public void topViewVerticalViewBinaryTree() {
         System.out.println("\nTop view / vertical view BT");
@@ -52,6 +54,8 @@ class BinaryTree {
      * Approach :
      * 1. level order traversal using Queue [at any point queue store all level data]
      * 2. fetch 1st node and store in result
+     * Time Complexity = n (traversing BT)
+     * Space Complexity = n (using queue)
      */
     public void rightOrLeftViewBinaryTree() {
         List<Node> viewList = new ArrayList<>();
@@ -84,7 +88,9 @@ class BinaryTree {
     /**
      * level order using recursion
      * Approach:
-     * same as top view BT, here we are incrementing level by 1 and in top view we are -1 for left and +1 for right recuresion
+     * same as top view BT, here we are incrementing level by 1 and in top view we are -1 for left and +1 for right recursion
+     * Time Complexity = n (traversing BT)
+     * Space Complexity = n (storing all nodes)
      */
     public void levelOrderInLists_UsingRecursion() {//level order using recursion
         final HashMap<Integer, List<Node>> map = new HashMap<>();//int is level, and list is all nodes that are peresent in that list
@@ -108,6 +114,8 @@ class BinaryTree {
 
     /**
      * level order using queue
+     * Time Complexity : n (traversing BT)
+     * Space Complexity : n (Queue)
      */
     public void traversalLevelOrder_UsingQueue() {// level order using Queue
         levelOrderUtil(root);
@@ -125,6 +133,11 @@ class BinaryTree {
         }
     }
 
+    /**
+     * Approach : recursion , Left, Node, Right
+     * Time Complexity : n (traversing BT)
+     * Space Complexity : 1
+     */
     public void traversalDFS() {
         helperDFS(root);
         System.out.println();
@@ -137,6 +150,12 @@ class BinaryTree {
         helperDFS(root.right);
     }
 
+    /**
+     * Approach : search where to add using recursion
+     * @param value
+     * Time complexity : n (traversing BT)
+     * Space complexity : 1
+     */
     public void insert(int value) {
         root = insertUtil(root, value);
         traversalDFS();
