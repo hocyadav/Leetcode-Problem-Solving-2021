@@ -2,6 +2,7 @@ package io.hari.problemsolving2021.graph;
 
 import lombok.Getter;
 
+import java.awt.*;
 import java.util.LinkedList;
 import java.util.stream.Stream;
 
@@ -45,6 +46,7 @@ class Graph {
         for (int i = 0; i < nodeSize; i++) {
             if (visited[i] == false) dfsUtil(i, visited);
         }
+        System.out.println();
     }
 
     private void dfsUtil(final int currNode, final boolean[] visited) {
@@ -66,6 +68,7 @@ class Graph {
 public class GraphDfsDirected_And_Connected {//connected means only on graph
 
     public static void main(String[] args) {
+        //TODO : connected nodes
         Graph graph = new Graph(4);
         graph.addEdge(0, 1);
         graph.addEdge(1, 0);
@@ -83,5 +86,12 @@ public class GraphDfsDirected_And_Connected {//connected means only on graph
 
         graph.dfsConnected(0);
         graph.dfsNotConnected();
+
+        // todo disconnected nodes
+        Graph graph2 = new Graph(6);
+        graph2.addEdge(0,1); //graph component 1
+        graph2.addEdge(1, 2); // graph component 2
+        graph2.addEdge(4, 5); // graph component 3
+        graph2.dfsNotConnected();
     }
 }
