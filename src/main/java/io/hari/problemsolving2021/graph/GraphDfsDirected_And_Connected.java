@@ -2,7 +2,9 @@ package io.hari.problemsolving2021.graph;
 
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.stream.Stream;
 
@@ -31,6 +33,7 @@ class Graph {
     public void dfsConnected(final int startNode) { // goal traverse all node with start index given
         System.out.println("Graph.dfsConnected");
         boolean[] visited = new boolean[nodeSize];//if we take Boolean then all values will be null
+        //why we are taking visited boolean arry : coz it is possible in recursion/dfs to reach same node again , its not like tree
         for (boolean b : visited) {
             System.out.println("b = " + b);//we will get false, since this is primitive type
         }
@@ -73,7 +76,7 @@ class Graph {
     }
 
     private void dfsUtil(final int currNode, final boolean[] visited) {
-        if (currNode < 0 || currNode > nodeSize) return; //null check, valid invalid check
+        if (currNode < 0 || currNode > nodeSize || visited[currNode] == true) return; //null check, valid invalid check
 
         visited[currNode] = true;
         System.out.print(currNode + " ");
@@ -84,6 +87,35 @@ class Graph {
             if (visited[node] == false) {
                 dfsUtil(node, visited);
             }
+        }
+    }
+    List<List<Integer>> result = new LinkedList<>();
+    public void allPathsFromSource(int startNode) {
+        boolean[] visited = new boolean[nodeSize];
+        allPathUtil(startNode, visited, new ArrayList<Integer>());
+
+        System.out.println("result = " + result);
+        result.clear();
+    }
+
+    private void allPathUtil(int startNode, boolean[] visited, ArrayList<Integer> current) {
+        if (visited[startNode] == true && startNode != 2) return;
+
+        visited[startNode] = true;
+        System.out.println(startNode+" ");
+
+        current.add(startNode);
+        System.out.println("current = " + current);
+        if (startNode == 2) {
+            result.add(current);
+            return;
+        }
+        final LinkedList<Integer> childList = listAdj[startNode];
+        for (Integer c : childList) {
+            if (visited[c] == false)
+                allPathUtil(c, visited, new ArrayList<>(current));
+            if (c == 2)
+                allPathUtil(c, visited, new ArrayList<>(current));
         }
     }
 }
@@ -117,5 +149,19 @@ public class GraphDfsDirected_And_Connected {//connected means only on graph
         graph2.addEdge(1, 2); // graph component 2
         graph2.addEdge(4, 5); // graph component 3
         graph2.dfsNotConnected();
+
+        //todo all path in list from source to destination
+        System.out.println();
+        Graph graph3 = new Graph(4);
+        graph3.addEdge(0, 2);
+        graph3.addEdge(0, 1);
+        graph3.addEdge(1, 2);
+        graph3.addEdge(2, 3);
+        final LinkedList<Integer>[] listAdj = graph3.listAdj;
+        Stream.of(listAdj).forEach(i -> {
+            final LinkedList<Integer> i1 = i;
+            System.out.println("listAdj = " + i1);
+        });
+        graph3.allPathsFromSource(0);
     }
 }
