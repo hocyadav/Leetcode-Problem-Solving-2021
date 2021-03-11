@@ -228,6 +228,7 @@ class BinaryTree {
         if (start > end) return null;
 
         int mid = (start + end) / 2;//todo or (start - end) / 2 + start
+//        int mid = start + ((end - start ) / 2) ;//both mid are same, find difference between start and end and then its mid one and then add start
         final Node newRoot = vector.get(mid);//this 1st mid will becode newRoot of BT
 
         final Node leftMidRoot = sortedListToBalanceTree(vector, start, mid - 1);
