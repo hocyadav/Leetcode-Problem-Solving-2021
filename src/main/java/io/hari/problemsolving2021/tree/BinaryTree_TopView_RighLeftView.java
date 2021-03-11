@@ -118,6 +118,7 @@ class BinaryTree {
      * Space Complexity : n (Queue)
      */
     public void traversalLevelOrder_UsingQueue() {// level order using Queue
+        System.out.print("Level order BFS : ");
         levelOrderUtil(root);
         System.out.println();
     }
@@ -139,6 +140,7 @@ class BinaryTree {
      * Space Complexity : 1
      */
     public void traversalDFS() {
+        System.out.print("DFS traversal.. : ");
         helperDFS(root);
         System.out.println();
     }
@@ -171,6 +173,42 @@ class BinaryTree {
         return root;
     }
 
+    public void mirrorViewDFS() {
+        System.out.println("mirror view done");
+        mirrorUtilDFS(root);
+    }
+
+    private Node mirrorUtilDFS(final Node root) {
+        if (root == null) return null;
+        Node left = mirrorUtilDFS(root.left);
+        Node right = mirrorUtilDFS(root.right);
+        //swap
+        root.left = right;
+        root.right = left;
+        return root;
+    }
+
+    public void mirrorViewBFS() {
+        mirrorUtilBFS(root);
+    }
+
+    private Node mirrorUtilBFS(final Node root) {
+        if (root == null) return null;
+        Queue<Node> qq = new LinkedList<>();
+        qq.add(root);
+
+        while (!qq.isEmpty()) {
+            final Node curr = qq.poll();
+            //swap left right
+            Node temp = curr.left;
+            curr.left = curr.right;
+            curr.right = temp;
+            if (curr.left != null) qq.add(curr.left);
+            if (curr.right != null) qq.add(curr.right);
+        }
+        return root;
+    }
+
 }
 public class BinaryTree_TopView_RighLeftView {
     public static void main(String[] args) {
@@ -186,6 +224,12 @@ public class BinaryTree_TopView_RighLeftView {
         tree.levelOrderInLists_UsingRecursion();
         tree.rightOrLeftViewBinaryTree();
         tree.topViewVerticalViewBinaryTree();
+        tree.traversalLevelOrder_UsingQueue();
+        tree.traversalDFS();
+        //mirror view of tree
+        tree.mirrorViewDFS(); tree.traversalLevelOrder_UsingQueue();tree.traversalDFS();
+        //mirror view of tree - back to original
+        tree.mirrorViewDFS(); tree.traversalLevelOrder_UsingQueue();tree.traversalDFS();
     }
 }
 /**
