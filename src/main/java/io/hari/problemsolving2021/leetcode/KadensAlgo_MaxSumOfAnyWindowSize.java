@@ -40,3 +40,8 @@ public class KadensAlgo_MaxSumOfAnyWindowSize {
         return globalSum;
     }
 }
+/**
+ sum = 6
+ sum2 = 7
+ sum3 = 100
+ */
