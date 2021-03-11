@@ -224,6 +224,8 @@ public class BinaryTree_TopView_RighLeftView {
         tree.levelOrderInLists_UsingRecursion();
         tree.rightOrLeftViewBinaryTree();
         tree.topViewVerticalViewBinaryTree();
+
+        System.out.println("before mirror views");
         tree.traversalLevelOrder_UsingQueue();
         tree.traversalDFS();
         //mirror view of tree
@@ -251,5 +253,16 @@ public class BinaryTree_TopView_RighLeftView {
  -1 [10]
  -2 [9]
  1 [20]
+
+ before mirror views
+ Level order BFS : 12 10 20 9 11 13
+ DFS traversal.. : 9 10 11 12 13 20
+ mirror view done
+ Level order BFS : 12 20 10 13 11 9
+ DFS traversal.. : 20 13 12 11 10 9
+ mirror view done
+ Level order BFS : 12 10 20 9 11 13
+ DFS traversal.. : 9 10 11 12 13 20
+
  *
  */
