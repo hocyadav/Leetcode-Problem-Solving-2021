@@ -285,31 +285,55 @@ public class BinaryTree_TopView_RighLeftView {
     }
 }
 /**
- * 12
- * 10 12
- * 10 12 20
- * 10 11 12 20
- * 10 11 12 13 20
- * 9 10 11 12 13 20
- * 12 10 20 9 11 13
- * 0 [12]
- * 1 [10, 20]
- * 2 [9, 11, 13]
- * right view  = [12, 20, 13]
- * <p>
- * Top view / vertical view BT
- * 0 [12, 11, 13]
- * -1 [10]
- * -2 [9]
- * 1 [20]
- * <p>
- * before mirror views
- * Level order BFS : 12 10 20 9 11 13
- * DFS traversal.. : 9 10 11 12 13 20
- * mirror view done
- * Level order BFS : 12 20 10 13 11 9
- * DFS traversal.. : 20 13 12 11 10 9
- * mirror view done
- * Level order BFS : 12 10 20 9 11 13
- * DFS traversal.. : 9 10 11 12 13 20
+
+ DFS traversal.. :
+ DFS traversal.. : 12
+ DFS traversal.. : 10 12
+ DFS traversal.. : 10 12 20
+ DFS traversal.. : 10 11 12 20
+ DFS traversal.. : 10 11 12 13 20
+ DFS traversal.. : 9 10 11 12 13 20
+ Level order BFS : 12 10 20 9 11 13
+
+ level order values store in map
+ 0 [12]
+ 1 [10, 20]
+ 2 [9, 11, 13]
+
+ right view nodes = [12, 20, 13]
+
+ Top view / vertical view BT
+ 0 [12, 11, 13]
+ -1 [10]
+ -2 [9]
+ 1 [20]
+ before mirror views
+ Level order BFS : 12 10 20 9 11 13
+ DFS traversal.. : 9 10 11 12 13 20
+ mirror view done
+ Level order BFS : 12 20 10 13 11 9
+ DFS traversal.. : 20 13 12 11 10 9
+ mirror view done
+ Level order BFS : 12 10 20 9 11 13
+ DFS traversal.. : 9 10 11 12 13 20
+ vector i = 9
+ vector i = 10
+ vector i = 11
+ vector i = 12
+ vector i = 13
+ vector i = 20
+ DFS traversal.. : 9 10 11 12 13 20
+ Level order BFS : 11 9 13 10 12 20
+
+ Top view / vertical view BT
+ 0 [11, 10, 12]
+ -1 [9]
+ 1 [13]
+ 2 [20]
+
+ level order values store in map
+ 0 [11]
+ 1 [9, 13]
+ 2 [10, 12, 20]
+
  */
