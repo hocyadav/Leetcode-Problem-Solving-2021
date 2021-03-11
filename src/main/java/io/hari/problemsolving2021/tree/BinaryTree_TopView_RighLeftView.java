@@ -36,7 +36,7 @@ class BinaryTree {
 
         map.forEach((k, v) -> {
             final List<Integer> values = v.stream().mapToInt(i -> i.val).boxed().collect(Collectors.toList());
-            System.out.println(k+" "+values);
+            System.out.println(k + " " + values);
         });
     }
 
@@ -62,7 +62,7 @@ class BinaryTree {
         rightLeftUtil(root, viewList);
 
         final List<Integer> values = viewList.stream().map(node -> node.val).collect(Collectors.toList());
-        System.out.println("right view  = " + values);
+        System.out.println("\nright view nodes = " + values);
     }
 
     private void rightLeftUtil(final Node root, List<Node> viewList) {
@@ -93,6 +93,7 @@ class BinaryTree {
      * Space Complexity = n (storing all nodes)
      */
     public void levelOrderInLists_UsingRecursion() {//level order using recursion
+        System.out.println("\nlevel order values store in map");
         final HashMap<Integer, List<Node>> map = new HashMap<>();//int is level, and list is all nodes that are peresent in that list
         levelOrderListUtil(root, map, 0);//start from 0 level
         for (Map.Entry<Integer, List<Node>> entry : map.entrySet()) {
@@ -128,7 +129,7 @@ class BinaryTree {
         qq.add(root);
         while (!qq.isEmpty()) {
             final Node current = qq.poll();
-            System.out.print(current.val+" ");
+            System.out.print(current.val + " ");
             if (current.left != null) qq.add(current.left);
             if (current.right != null) qq.add(current.right);
         }
@@ -148,15 +149,15 @@ class BinaryTree {
     private void helperDFS(final Node root) {
         if (root == null) return;
         helperDFS(root.left);
-        System.out.print(root.val+" ");
+        System.out.print(root.val + " ");
         helperDFS(root.right);
     }
 
     /**
      * Approach : search where to add using recursion
-     * @param value
-     * Time complexity : n (traversing BT)
-     * Space complexity : 1
+     *
+     * @param value Time complexity : n (traversing BT)
+     *              Space complexity : 1
      */
     public void insert(int value) {
         root = insertUtil(root, value);
@@ -209,7 +210,43 @@ class BinaryTree {
         return root;
     }
 
+    // 1 : store inorder
+    // 2 : binary jump logic
+    public Node convertUnbalanceToBalanceTree() {
+        Vector<Node> vector = new Vector<>();//this is part of collections
+        storeSortedOrder_inorderUtil(root, vector);
+        vector.stream().forEach(i -> System.out.println("vector i = " + i.val));
+
+        Node newRoot = sortedListToBalanceTree(vector, 0, vector.size() - 1);
+        return newRoot;
+    }
+
+    //get mid in vectore using start and end
+    //get mid node obj
+    //update left and right value using recursion
+    private Node sortedListToBalanceTree(final Vector<Node> vector, int start, int end) {
+        if (start > end) return null;
+
+        int mid = (start + end) / 2;//todo or (start - end) / 2 + start
+        final Node newRoot = vector.get(mid);//this 1st mid will becode newRoot of BT
+
+        final Node leftMidRoot = sortedListToBalanceTree(vector, start, mid - 1);
+        final Node rightMidRoot = sortedListToBalanceTree(vector, mid + 1, end);
+        newRoot.left = leftMidRoot;
+        newRoot.right = rightMidRoot;
+
+        return newRoot;
+    }
+
+    private void storeSortedOrder_inorderUtil(final Node root, Vector vector) {
+        if (root == null) return;
+        storeSortedOrder_inorderUtil(root.left, vector);
+        vector.add(root);
+        storeSortedOrder_inorderUtil(root.right, vector);
+    }
+
 }
+
 public class BinaryTree_TopView_RighLeftView {
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
@@ -229,40 +266,50 @@ public class BinaryTree_TopView_RighLeftView {
         tree.traversalLevelOrder_UsingQueue();
         tree.traversalDFS();
         //mirror view of tree
-        tree.mirrorViewDFS(); tree.traversalLevelOrder_UsingQueue();tree.traversalDFS();
+        tree.mirrorViewDFS();
+        tree.traversalLevelOrder_UsingQueue();
+        tree.traversalDFS();
         //mirror view of tree - back to original
-        tree.mirrorViewDFS(); tree.traversalLevelOrder_UsingQueue();tree.traversalDFS();
+        tree.mirrorViewDFS();
+        tree.traversalLevelOrder_UsingQueue();
+        tree.traversalDFS();
+
+        //from unbalance to balance
+        final Node newRoot = tree.convertUnbalanceToBalanceTree();
+        BinaryTree tree1 = new BinaryTree();
+        tree1.root = newRoot;
+        tree1.traversalDFS();
+        tree1.traversalLevelOrder_UsingQueue();
+        tree1.topViewVerticalViewBinaryTree();
+        tree1.levelOrderInLists_UsingRecursion();
     }
 }
 /**
- *
- 12
- 10 12
- 10 12 20
- 10 11 12 20
- 10 11 12 13 20
- 9 10 11 12 13 20
- 12 10 20 9 11 13
- 0 [12]
- 1 [10, 20]
- 2 [9, 11, 13]
- right view  = [12, 20, 13]
-
- Top view / vertical view BT
- 0 [12, 11, 13]
- -1 [10]
- -2 [9]
- 1 [20]
-
- before mirror views
- Level order BFS : 12 10 20 9 11 13
- DFS traversal.. : 9 10 11 12 13 20
- mirror view done
- Level order BFS : 12 20 10 13 11 9
- DFS traversal.. : 20 13 12 11 10 9
- mirror view done
- Level order BFS : 12 10 20 9 11 13
- DFS traversal.. : 9 10 11 12 13 20
-
- *
+ * 12
+ * 10 12
+ * 10 12 20
+ * 10 11 12 20
+ * 10 11 12 13 20
+ * 9 10 11 12 13 20
+ * 12 10 20 9 11 13
+ * 0 [12]
+ * 1 [10, 20]
+ * 2 [9, 11, 13]
+ * right view  = [12, 20, 13]
+ * <p>
+ * Top view / vertical view BT
+ * 0 [12, 11, 13]
+ * -1 [10]
+ * -2 [9]
+ * 1 [20]
+ * <p>
+ * before mirror views
+ * Level order BFS : 12 10 20 9 11 13
+ * DFS traversal.. : 9 10 11 12 13 20
+ * mirror view done
+ * Level order BFS : 12 20 10 13 11 9
+ * DFS traversal.. : 20 13 12 11 10 9
+ * mirror view done
+ * Level order BFS : 12 10 20 9 11 13
+ * DFS traversal.. : 9 10 11 12 13 20
  */
