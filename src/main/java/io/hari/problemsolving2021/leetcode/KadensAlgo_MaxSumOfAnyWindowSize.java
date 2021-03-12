@@ -25,7 +25,6 @@ public class KadensAlgo_MaxSumOfAnyWindowSize {
      3. If(above value > max_so_far) update max_so_far = current_max;
 
      Return max_so_far;
-
      */
     public static int maxSumOfAnyWindowSize(int[] arr) {
         int globalSum = 0;
