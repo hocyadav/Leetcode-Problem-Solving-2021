@@ -244,6 +244,7 @@ class BinaryTree {
         storeSortedOrder_inorderUtil(root.left, vector);
         vector.add(root);
         storeSortedOrder_inorderUtil(root.right, vector);
+        Map<String, Integer> map = new HashMap();
     }
 
 }
