@@ -22,19 +22,16 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-<!--        internally-->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
             <version>4.4</version>
         </dependency>
-
         <!--       all utility classes like StringUtil, -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>

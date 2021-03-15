@@ -35,7 +35,6 @@ public class KadensAlgo_MaxSumOfAnyWindowSize {
             if (localSum < 0) localSum = 0;//3 reset localSum if it is negative
             globalSum = Math.max(globalSum, localSum);//2
         }
-
         return globalSum;
     }
 }
