@@ -17,20 +17,22 @@ public class WallsAndGate_GraphProblem {
                 {0, -1, INF, INF},
         };
         print2DArray(arr);
-        wallsAndGate(arr);
+//        wallsAndGate(arr);//working
+        zeroOneMatrix_UsingBFSQueue2_ForWallsAndGate(arr);//working
         print2DArray(arr);
         System.out.println("---------end------------");
 
-        int[][] arr2 = {
-                {0, 0, 1},
-                {0, 1, 1},
-                {1, 1, 1},
-        };
-        print2DArray(arr2);
-//        zeroOneMatrix1_usingWallsAndGate(arr2);
-//        zeroOneMatrix_UsingBFSQueue(arr2);//not working
-        zeroOneMatrix_UsingBFSQueue2(arr2);//working
-        print2DArray(arr2);
+
+//        int[][] arr2 = {
+//                {0, 0, 1},
+//                {0, 1, 1},
+//                {1, 1, 1},
+//        };
+//        print2DArray(arr2);
+////        zeroOneMatrix1_usingWallsAndGate(arr2);
+////        zeroOneMatrix_UsingBFSQueue(arr2);//not working
+//        zeroOneMatrix_UsingBFSQueue2(arr2);//working
+//        print2DArray(arr2);
     }
 
     //same as walls and gateway. 1st change all 1 to Int Max
@@ -150,6 +152,41 @@ public class WallsAndGate_GraphProblem {
             }
         }
     }
+
+    // https://www.lintcode.com/problem/walls-and-gates/
+    private static void zeroOneMatrix_UsingBFSQueue2_ForWallsAndGate(int[][] arr) {//working : https://leetcode.com/problems/01-matrix/
+        Queue<int[]> qq = new LinkedList<>();
+        final int r = arr.length;
+        final int c = arr[0].length;
+        boolean[][] visited = new boolean[r][c];
+
+        for (int i = 0; i < r; i++) { //1. store all 0 node in Queue + mark visited true
+            for (int j = 0; j < c; j++) {
+                if (arr[i][j] == 0) {
+                    qq.add(new int[]{i, j});//2nd value is distance from 0 ??
+                    visited[i][j] = true;
+                }
+            }
+        }
+        int[][] fourDir = new int[][]{{1,0}, {-1, 0}, {0, 1}, {0, -1}};
+        while (!qq.isEmpty()) {
+            final int[] curr = qq.poll();
+            final int currRowIndex = curr[0];
+            final int currColIndex = curr[1];
+
+            for (int i = 0; i < fourDir.length; i++) {
+                int childRow = currRowIndex + fourDir[i][0];
+                int childCol = currColIndex + fourDir[i][1];
+                if (childRow < 0 || childRow >= r || childCol < 0 || childCol >= c || visited[childRow][childCol] //invalid + visited children
+                        || arr[childRow][childCol] == -1) //adding -1 condition for wall
+                    continue;
+                visited[childRow][childCol] = true;
+                arr[childRow][childCol] = arr[currRowIndex][currColIndex] + 1;
+                qq.add(new int[]{childRow, childCol});
+            }
+        }
+    }
+
 
     private static void print2DArray(int[][] arr) {
 //        Arrays.deepToString(arr); //m1
