@@ -36,26 +36,27 @@ class MyQueue {
 
     //assume stack 1 is for adding and stack 2 is for removing
     public void enQueue(int data) {
-        if (!stack2.isEmpty()) {
+        if (!stack2.isEmpty()) {// 2.
             while (!stack2.isEmpty()) {
                 pushStack(stack1, popStack(stack2));//push all stack 2 data into stack 1
             }
         }
-        pushStack(stack1, data);
+        pushStack(stack1, data);//1 . add data to stack1
     }
 
+    //stack 2 is for removing
     public int deQueue() {
         if (!stack1.isEmpty()) {
             while (!stack1.isEmpty()) {
                 pushStack(stack2, popStack(stack1));
             }
         }
-        final int t = popStack(stack2);
+        final int t = popStack(stack2);//1. remove from stack2
         return t;
     }
 
     public int peekQueue() {
-        if (!stack1.isEmpty()) {
+        if (!stack1.isEmpty()) {//this check is same as above deQueue method
             while (!stack1.isEmpty()) {
                 pushStack(stack2, popStack(stack1));
             }
@@ -68,7 +69,7 @@ class MyQueue {
         return stack1.isEmpty() && stack2.isEmpty();
     }
 }
-public class QueueUsing2Stack {
+public class QueueUsing2Stack { //impl queue using stack inbuild function
     public static void main(String[] args) {
         MyQueue queue = new MyQueue();
         System.out.println("queue.emptyQueue() = " + queue.emptyQueue());
