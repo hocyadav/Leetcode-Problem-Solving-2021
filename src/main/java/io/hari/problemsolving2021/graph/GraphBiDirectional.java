@@ -51,3 +51,14 @@ public class GraphBiDirectional {
         graph.printEdge();
     }
 }
+/**
+ *
+ list = [1]
+ list = [0, 2]
+ list = [1, 3]
+ list = [2]
+ 0 -> 1
+ 1 -> 0 2
+ 2 -> 1 3
+ 3 -> 2
+ */

@@ -165,3 +165,38 @@ public class GraphDfsDirected_And_Connected {//connected means only on graph
         graph3.allPathsFromSource(0);
     }
 }
+/**
+ *
+ i1 = [1]
+ i1 = [0, 2, 3]
+ i1 = [3]
+ i1 = [1, 2]
+ Graph.dfsConnected
+ b = false
+ b = false
+ b = false
+ b = false
+ 0 1 2 3
+ Graph.dfsNotConnected
+ 0 1 2 3
+ Graph.bfsLevelOrderConnected
+ 0 1 2 3
+ Graph.dfsNotConnected
+ 0 1 2 3 4 5
+
+ listAdj = [2, 1]
+ listAdj = [2]
+ listAdj = [3]
+ listAdj = []
+ 0
+ current = [0]
+ 2
+ current = [0, 2]
+ 2
+ current = [0, 2]
+ 1
+ current = [0, 1]
+ 2
+ current = [0, 1, 2]
+ result = [[0, 2], [0, 2], [0, 1, 2]]
+ */
