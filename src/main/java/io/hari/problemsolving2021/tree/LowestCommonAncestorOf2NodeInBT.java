@@ -36,12 +36,12 @@ public class LowestCommonAncestorOf2NodeInBT {
     public static Node lcaInBinaryTree(Node root, int node1Val, int node2Val) {
         if (root == null) return null;
 
-        if (root.val > node1Val && root.val > node2Val)
+        if (root.val > node1Val && root.val > node2Val) //both are present on left side
             return lcaInBinaryTree(root.left, node1Val, node2Val);
-        else if (root.val < node1Val && root.val < node2Val)
+        else if (root.val < node1Val && root.val < node2Val) // both are present on right side
             return lcaInBinaryTree(root.right, node1Val, node2Val);
 
-        return root; // equal to node1Val
+        return root; //between node1val and node2Val
     }
 }
 
