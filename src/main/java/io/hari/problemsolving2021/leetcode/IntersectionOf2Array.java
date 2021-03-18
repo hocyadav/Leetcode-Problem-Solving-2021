@@ -10,10 +10,17 @@ import java.util.Set;
  */
 public class IntersectionOf2Array {
     public static void main(String[] args) {
-        int[] arr1 = new int[]{1, 2, 3, 4};
-        int[] arr2 = new int[]{1, 2};
+        int[] arr1 = new int[]{1, 2, 3, 4, 9};
+        int[] arr2 = new int[]{1, 2, 9};
         intersectionUsing2Set(arr1, arr2);
+        intersectionOfArrayUsing2Pointer(arr1, arr2);
     }
+
+    /**
+     * store 1st array in set1
+     * store 2nd array in set2 only if present in set1
+     * TN : n
+     */
 
     public static void intersectionUsing2Set(int[] array1, int[] array2) {
         Set<Integer> set1 = new HashSet<>();
@@ -36,7 +43,26 @@ public class IntersectionOf2Array {
             result[i++] = s;
         }
     }
+
+    public static void intersectionOfArrayUsing2Pointer(int[] array1, int[] array2) {
+        Arrays.sort(array1);
+        Arrays.sort(array2);
+
+        Set<Integer> intersectionSet = new HashSet<>();
+
+        int p1 = 0, p2 = 0;
+        while (p1 < array1.length && p2 < array2.length) {
+            if (array1[p1] < array2[p2]) p1++; //1st array value less so move 1st pointer
+            else if (array1[p1] > array2[p2]) p2++;
+            else { //present in both array
+                intersectionSet.add(array1[p1]);
+                p1++; p2++;
+            }
+        }
+        System.out.println("intersectionSet = " + intersectionSet);
+    }
 }
 /**
- set2Intersection = [1, 2]
+ set2Intersection = [1, 2, 9]
+ intersectionSet = [1, 2, 9]
  */
