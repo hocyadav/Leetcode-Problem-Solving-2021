@@ -12,9 +12,16 @@ import java.util.TreeMap;
 public class LongestSubString_onlyK_char {
 
     public static void main(String[] args) {
-        longestSubStringWithKChar("aaacbcc");
+        longestSubStringWithKChar("aaacbcc");//map + 2 pointers
     }
     //can contain duplicates also
+
+    /**
+     * 1. always add
+     * 2. remove if target length exceeds
+     *
+     * 3. update result
+     */
     public static void longestSubStringWithKChar(String str) {// 2 pointers
         int result = 0;
         Map<Character, Integer> map = new LinkedHashMap<>();
@@ -22,10 +29,10 @@ public class LongestSubString_onlyK_char {
 
         for (int r = 0; r < str.length(); r++) {
             final char curr = str.charAt(r);
-            map.put(curr, map.getOrDefault(curr, 0) + 1);
+            map.put(curr, map.getOrDefault(curr, 0) + 1);//1. always add
             System.out.println("map o= " + map);
 
-            while (map.size() > 2) {
+            while (map.size() > 2) { //2. remove if target length exceeds
                 final char left = str.charAt(l);
                 map.put(left, map.get(left) - 1);
                 if (map.get(left) == 0)
@@ -33,7 +40,7 @@ public class LongestSubString_onlyK_char {
                 l++;
                 System.out.println("map i= " + map);
             }
-            result = Math.max(result, r - l + 1);
+            result = Math.max(result, r - l + 1); //3. update result
             System.out.println("result = " + result);
         }
 
