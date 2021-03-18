@@ -10,10 +10,17 @@ import java.util.Set;
  */
 public class LongestSubString_AllUnique { // 2 pointer
     public static void main(String[] args) {
-        longestSubAllUnique("hariomho");
+        longestSubAllUnique("hariomho");//set + 2 pointer
     }
 
     //all unique -> means use set to store unique,
+
+    /**
+     * 2. remove if present
+     * 1. always add
+     *
+     * 3. update result
+     */
     public static void longestSubAllUnique(String str) {
         int result = 0;
         Set<Character> set = new LinkedHashSet<>();
@@ -22,17 +29,17 @@ public class LongestSubString_AllUnique { // 2 pointer
         for (int r = 0; r < str.length(); r++) {
             System.out.println("entry set = " + set);
             final char curr = str.charAt(r);
-            while (set.contains(curr)) {
+            while (set.contains(curr)) { //2. remove if present
                 set.remove(str.charAt(l));
                 System.out.println("w set = " + set);
                 l++;
             }
-            set.add(curr);
+            set.add(curr);//1. always add
             System.out.println("added set = " + set);
             final int currLength = r - l + 1;
             System.out.println("curr str difference Length = " + currLength);
             System.out.println("set = " + set.size());
-            result = Math.max(currLength, result);
+            result = Math.max(currLength, result); //3. update result
             System.out.println("result = " + result);
             System.out.println();
         }
