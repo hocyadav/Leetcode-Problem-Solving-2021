@@ -9,9 +9,11 @@ import java.util.PriorityQueue;
  */
 public class MeetingRoom {
     public static void main(String[] args) {
-        Interval[] intervals =
-                new Interval[]{new Interval(0, 100),
-                        new Interval(29, 100), new Interval(39, 42), new Interval(41, 50)};
+        Interval[] intervals = new Interval[]{
+                new Interval(0, 100), new Interval(29, 100), new Interval(39, 42), new Interval(41, 50)};
+        Interval[] intervals2 = new Interval[]{
+                new Interval(0, 100), new Interval(100, 200), new Interval(200, 300), new Interval(300, 400)};
+        meetingRoom1_(intervals);
         meetingRoom1(intervals);
         meetingRoom2(intervals);//this will work for meeting room 1 also, if count is 1 then one person cal attend all meetings
     }
@@ -28,15 +30,29 @@ public class MeetingRoom {
         System.out.println("meeting possible by 1 person");
     }
 
+    public static void meetingRoom1_(Interval[] intervals) {
+        Arrays.sort(intervals, (a, b) -> a.start - b.start);
+        for (int i = 1; i < intervals.length; i++) {
+            if (intervals[i].start >= intervals[i - 1].end) {
+                continue;
+            }
+            if (intervals[i].start < intervals[i - 1].end) {
+                System.out.println("not possible");
+                return;
+            }
+        }
+        System.out.println("meeting possible");
+    }
+
     public static void meetingRoom2(Interval[] intervals) {
         Arrays.sort(intervals, (a, b) -> a.start - b.start);
 
         PriorityQueue<Interval> heap = new PriorityQueue<>((a, b) -> a.end - b.end);//min heap
-        for (Interval i : intervals) {
-            if (!heap.isEmpty() && i.start >= heap.peek().end) {//2 remove old meeting and new meeting will take place this one
+        for (Interval curr : intervals) {
+            if (!heap.isEmpty() && curr.start >= heap.peek().end) {//2 remove old meeting and new meeting will take place this one
                 heap.remove();
             }
-            heap.add(i);//1 always add,
+            heap.add(curr);//1 always add,
         }
         System.out.println("heap.size() = " + heap.size());
     }
