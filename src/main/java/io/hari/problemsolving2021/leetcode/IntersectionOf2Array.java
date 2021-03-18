@@ -14,6 +14,7 @@ public class IntersectionOf2Array {
         int[] arr2 = new int[]{1, 2, 9};
         intersectionUsing2Set(arr1, arr2);
         intersectionOfArrayUsing2Pointer(arr1, arr2);
+        intersectionOfArray_UsingBinarySearchOnSortedArray(arr1, arr2);
     }
 
     /**
@@ -50,6 +51,7 @@ public class IntersectionOf2Array {
      * 2. solve using 2 pointer
      * 3. traverse and if 1st array value less move 1st pointer, if 2nd array value greater then move 2nd pointer,
      * if both value same than store in set
+     * TC : n log n
      */
     public static void intersectionOfArrayUsing2Pointer(int[] array1, int[] array2) {
         Arrays.sort(array1);
@@ -68,8 +70,45 @@ public class IntersectionOf2Array {
         }
         System.out.println("intersectionSet = " + intersectionSet);
     }
+
+    /**
+     * Sort + Binary search + set
+     *
+     * sort array 2
+     * traverse array1 and store in set 1
+     * call Binary search for each value and if present then add to set
+     * TC : n log n
+     */
+    public static void intersectionOfArray_UsingBinarySearchOnSortedArray(int[] array1, int[] array2) {
+        Arrays.sort(array2);
+        Set<Integer> set = new HashSet<>();
+
+        for (int targetVal : array1) {
+            if (binarySearch(array2, targetVal)) {//call Binary search on sorted array
+                set.add(targetVal);
+            }
+        }
+        System.out.println("using binary search  = " + set);
+    }
+
+    private static boolean binarySearch(int[] arr, int targetVal) {
+        return rec(arr, targetVal, 0, arr.length - 1);
+    }
+
+    private static boolean rec(int[] arr, int targetVal, int start, int end) {
+        if (start > end) return false;
+
+        int mid = start + (end - start)/2; //or int mid = (start + end)/2;, both are same
+        if (arr[mid] == targetVal) return true;
+
+        if (targetVal < arr[mid])
+            return rec(arr, targetVal, start, mid - 1);
+        else
+            return rec(arr, targetVal, mid + 1, end);
+    }
 }
 /**
  set2Intersection = [1, 2, 9]
  intersectionSet = [1, 2, 9]
+ using binary search  = [1, 2, 9]
  */
