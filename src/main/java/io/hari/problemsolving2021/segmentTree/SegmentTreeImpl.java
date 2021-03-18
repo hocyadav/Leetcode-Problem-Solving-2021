@@ -94,6 +94,9 @@ public class SegmentTreeImpl {
         segmentTree.buildSegmentTree(arr, 0, arr.length - 1);
         segmentTree.traverseSegmentTree();
         segmentTree.sumRange(1, 4);
+        segmentTree.sumRange(0, 2);
+        segmentTree.sumRange(1, 2);
+        segmentTree.sumRange(3, 4);
     }
 }
 /**
@@ -107,4 +110,7 @@ public class SegmentTreeImpl {
  3 4 : 8
  4 4 : 3
  sum = 10
+ sum = 3
+ sum = 2
+ sum = 8
  */
