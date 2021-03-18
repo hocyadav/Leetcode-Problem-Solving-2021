@@ -44,6 +44,13 @@ public class IntersectionOf2Array {
         }
     }
 
+    /**
+     * sort array + 2 pointer + set
+     * 1. sort both arrays
+     * 2. solve using 2 pointer
+     * 3. traverse and if 1st array value less move 1st pointer, if 2nd array value greater then move 2nd pointer,
+     * if both value same than store in set
+     */
     public static void intersectionOfArrayUsing2Pointer(int[] array1, int[] array2) {
         Arrays.sort(array1);
         Arrays.sort(array2);
