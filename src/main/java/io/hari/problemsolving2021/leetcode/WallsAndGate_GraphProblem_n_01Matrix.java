@@ -7,7 +7,7 @@ import java.util.Queue;
  * @Author Hariom Yadav
  * @create 17-03-2021
  */
-public class WallsAndGate_GraphProblem {
+public class WallsAndGate_GraphProblem_n_01Matrix {
     public static void main(String[] args) {
         int INF = Integer.MAX_VALUE;
         int[][] arr = {
@@ -23,15 +23,15 @@ public class WallsAndGate_GraphProblem {
         System.out.println("---------end------------");
 
 
-//        int[][] arr2 = {
-//                {0, 0, 1},
-//                {0, 1, 1},
-//                {1, 1, 1},
-//        };
-//        print2DArray(arr2);
-////        zeroOneMatrix1_usingWallsAndGate(arr2);
+        int[][] arr2 = {
+                {0, 0, 1},
+                {0, 1, 1},
+                {1, 1, 1},
+        };
+        print2DArray(arr2);
+//        zeroOneMatrix1_usingWallsAndGate(arr2);//working using dp
 ////        zeroOneMatrix_UsingBFSQueue(arr2);//not working
-//        zeroOneMatrix_UsingBFSQueue2(arr2);//working
+        zeroOneMatrix_UsingBFSQueue2(arr2);//working using queue
 //        print2DArray(arr2);
     }
 
@@ -155,7 +155,7 @@ public class WallsAndGate_GraphProblem {
 
     // https://www.lintcode.com/problem/walls-and-gates/
     private static void zeroOneMatrix_UsingBFSQueue2_ForWallsAndGate(int[][] arr) {//working : https://leetcode.com/problems/01-matrix/
-        Queue<int[]> qq = new LinkedList<>();
+        Queue<int[]> qq = new LinkedList<>();//store i, j
         final int r = arr.length;
         final int c = arr[0].length;
         boolean[][] visited = new boolean[r][c];

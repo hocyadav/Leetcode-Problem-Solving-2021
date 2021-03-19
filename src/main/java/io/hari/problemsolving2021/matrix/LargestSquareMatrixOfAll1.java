@@ -31,7 +31,7 @@ public class LargestSquareMatrixOfAll1 {
     public static void squareMatrixOfAll1(int[][] matrix) {
         int r = matrix.length;
         int c = matrix[0].length;
-        int[][] dp = new int[r][c];
+        int[][] dp = new int[r][c];//store max length of square
 
         for (int i = 0; i < r; i++) {//1st column
             dp[i][0] = matrix[i][0];

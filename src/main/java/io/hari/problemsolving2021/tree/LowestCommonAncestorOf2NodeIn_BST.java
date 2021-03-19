@@ -4,7 +4,7 @@ package io.hari.problemsolving2021.tree;
  * @Author Hariom Yadav
  * @create 18-03-2021
  */
-public class LowestCommonAncestorOf2NodeInBT {
+public class LowestCommonAncestorOf2NodeIn_BST { // tree is sorted, its BST not BT
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
         tree.root = new Node(20);
@@ -16,30 +16,30 @@ public class LowestCommonAncestorOf2NodeInBT {
         tree.root.left.right.right = new Node(14);
 
         int n1 = 10, n2 = 14;
-        final Node lca = lcaInBinaryTree(tree.root, n1, n2);
+        final Node lca = lcaInBinarySearchTree(tree.root, n1, n2);
         System.out.println("lca = " + lca.val);
 
-        final Node lca2 = lcaInBinaryTree(tree.root, 14, 8);
+        final Node lca2 = lcaInBinarySearchTree(tree.root, 14, 8);
         System.out.println("lca2 = " + lca2.val);
 
-        final Node lca3 = lcaInBinaryTree(tree.root, 10, 22);
+        final Node lca3 = lcaInBinarySearchTree(tree.root, 10, 22);
         System.out.println("lca3 = " + lca3.val);
 
     }
 
-    /**
+    /** https://www.geeksforgeeks.org/lowest-common-ancestor-in-a-binary-search-tree/
      * 1 Create a recursive function that takes a node and the two values n1 and n2.
      * 2 If the value of the current node is less than both n1 and n2, then LCA lies in the right subtree. Call the recursive function for thr right subtree.
      * 3 If the value of the current node is greater than both n1 and n2, then LCA lies in the left subtree. Call the recursive function for thr left subtree.
      * 4 If both the above cases are false then return the current node as LCA.
      */
-    public static Node lcaInBinaryTree(Node root, int node1Val, int node2Val) {
+    public static Node lcaInBinarySearchTree(Node root, int node1Val, int node2Val) {
         if (root == null) return null;
 
         if (root.val > node1Val && root.val > node2Val) //both are present on left side
-            return lcaInBinaryTree(root.left, node1Val, node2Val);
+            return lcaInBinarySearchTree(root.left, node1Val, node2Val);
         else if (root.val < node1Val && root.val < node2Val) // both are present on right side
-            return lcaInBinaryTree(root.right, node1Val, node2Val);
+            return lcaInBinarySearchTree(root.right, node1Val, node2Val);
 
         return root; //between node1val and node2Val
     }

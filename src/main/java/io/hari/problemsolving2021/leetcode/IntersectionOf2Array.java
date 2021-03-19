@@ -10,11 +10,13 @@ public class IntersectionOf2Array {
     public static void main(String[] args) {
         int[] arr1 = new int[]{1, 2, 3, 4, 9, 9};
         int[] arr2 = new int[]{1, 2, 9, 9};
-        intersectionUsing2Set(arr1, arr2);
-        intersectionOfArrayUsing2Pointer(arr1, arr2);
-        intersectionOfArray_UsingBinarySearchOnSortedArray(arr1, arr2);
+        //que1:  intersection-of-two-arrays-i
+        intersection_2Set(arr1, arr2);
+        intersection_Sort_Set_2Pointer(arr1, arr2);
+        intersection_Sort_Set_BinarySearch(arr1, arr2);
 
-        intersectionOfArray_Q2_StoringAllCommonValues(arr1, arr2); // intersection-of-two-arrays-ii
+        //que2:  intersection-of-two-arrays-ii , same as 2 pointer change set -> list
+        intersection_Sort_List_2Pointer(arr1, arr2);
     }
 
     /**
@@ -22,7 +24,7 @@ public class IntersectionOf2Array {
      * store all common values
      * sort both array, + 2 pointers + traverse
      */
-    private static void intersectionOfArray_Q2_StoringAllCommonValues(int[] array1, int[] array2) {
+    private static void intersection_Sort_List_2Pointer(int[] array1, int[] array2) {
         Arrays.sort(array1);
         Arrays.sort(array2);
         List<Integer> list = new LinkedList<>();
@@ -45,7 +47,7 @@ public class IntersectionOf2Array {
      * store 2nd array in set2 only if present in set1
      * TN : n
      */
-    public static void intersectionUsing2Set(int[] array1, int[] array2) {
+    public static void intersection_2Set(int[] array1, int[] array2) {
         Set<Integer> set1 = new HashSet<>();
         Set<Integer> set2Intersection = new HashSet<>();
 
@@ -75,7 +77,7 @@ public class IntersectionOf2Array {
      * if both value same than store in set
      * TC : n log n
      */
-    public static void intersectionOfArrayUsing2Pointer(int[] array1, int[] array2) {
+    public static void intersection_Sort_Set_2Pointer(int[] array1, int[] array2) {
         Arrays.sort(array1);
         Arrays.sort(array2);
 
@@ -101,7 +103,7 @@ public class IntersectionOf2Array {
      * call Binary search for each value and if present then add to set
      * TC : n log n
      */
-    public static void intersectionOfArray_UsingBinarySearchOnSortedArray(int[] array1, int[] array2) {
+    public static void intersection_Sort_Set_BinarySearch(int[] array1, int[] array2) {
         Arrays.sort(array2);
         Set<Integer> set = new HashSet<>();
 

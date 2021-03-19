@@ -2,6 +2,7 @@ package io.hari.problemsolving2021;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 /**
  * @Author Hariom Yadav
@@ -21,5 +22,8 @@ public class ScannerReadFromConsole {
 
         final int nextInt = scanner.nextInt();//this is continuous of above scanner.next, if we put "hari om" then error "hari 123" is correct
         System.out.println("nextInt = " + nextInt);
+
+        int[][] task = new int[][]{};
+        Arrays.stream(task);
     }
 }
