@@ -19,14 +19,41 @@ public class LowestCommonAncestorOf2NodeIn_BT { // tree is sorted, its BST not B
         tree.root.left.right.right = new Node(14);
 
         int n1 = 10, n2 = 14;
+        //space = n
         lcaIn_BinaryTree(tree.root, n1, n2);
         lcaIn_BinaryTree(tree.root, 14, 8);
         lcaIn_BinaryTree(tree.root, 10, 22);
+        //space  = 1
+        lcaIn_BinaryTree_1Space(tree.root, 10, 22);
+        lcaIn_BinaryTree_1Space(tree.root, 14, 8);
+        lcaIn_BinaryTree_1Space(tree.root, n1, n2);
+    }
+
+    private static void lcaIn_BinaryTree_1Space(Node root, int val1, int val2) {
+        final Node node = rec_1space(root, val1, val2);
+        System.out.println("node.val = " + node.val);
+    }
+
+    private static Node rec_1space(Node root, int val1, int val2) {
+        if (root == null) return null;
+        if (root.val == val1 || root.val == val2) return root;
+
+        final Node left = rec_1space(root.left, val1, val2);
+        final Node right = rec_1space(root.right, val1, val2);
+
+        if (left == null && right == null) return null;//both are null
+        if (left != null && right != null) return root;//both are not null
+
+        //any one is null then return non null value
+        if (left == null) return right;
+        else return left;
     }
 
     /**
      * 1 Approach : find path from root to leaf for both nodes
      * 2 then traverse both array till common value
+     * TC : n
+     * SC : n
      */
     public static void lcaIn_BinaryTree(Node root, int node1Val, int node2Val) {
         final List<Integer> path1 = findRootToLeafNodes(root, node1Val);
@@ -82,5 +109,8 @@ public class LowestCommonAncestorOf2NodeIn_BT { // tree is sorted, its BST not B
  path1 = 20
  path2 = 20
  ---------------
+ node.val = 20
+ node.val = 8
+ node.val = 12
  */
 
