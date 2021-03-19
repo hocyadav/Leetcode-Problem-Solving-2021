@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * @Author Hariom Yadav
  * @create 18-03-2021
+ * https://www.youtube.com/watch?v=13m9ZCB8gjw
  */
 public class LowestCommonAncestorOf2NodeIn_BT { // tree is sorted, its BST not BT
     public static void main(String[] args) {
@@ -34,6 +35,13 @@ public class LowestCommonAncestorOf2NodeIn_BT { // tree is sorted, its BST not B
         System.out.println("node.val = " + node.val);
     }
 
+    /**
+     * BASE CASE : if any value matches with root then return root
+     * call recursion left + right : and store results from recursion
+     * if both left and right null -> return null
+     * if both left and right NOT null -> return root
+     * if anyone left and right NOT null -> return not null
+     */
     private static Node rec_1space(Node root, int val1, int val2) {
         if (root == null) return null;
         if (root.val == val1 || root.val == val2) return root;
