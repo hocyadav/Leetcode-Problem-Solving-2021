@@ -217,3 +217,74 @@ public class BST_Tree {
         tree.search(10);
     }
 }
+/**
+ *
+ Inorder : 100
+ Insert 10
+ Inorder : 10 100
+ Insert 0
+ Inorder : 0 10 100
+ Preorder : 100 10 0
+ Postorder : 0 10 100
+ Insert 101
+ Inorder : 0 10 100 101
+ Preorder : 100 10 0 101
+ Postorder : 0 10 101 100
+ Level order traversal : 100 10 101 0
+
+ Insert 5
+ Found 10
+ Inorder : 0 5 10 100 101
+ Not found 11110
+ Preorder : 100 10 0 5 101
+ Postorder : 5 0 10 101 100
+ Level order traversal : 100 10 101 0 5
+
+ Insert 11
+ Inorder : 0 5 10 11 100 101
+ Preorder : 100 10 0 5 11 101
+ Postorder : 5 0 11 10 101 100
+ Level order traversal : 100 10 101 0 11 5
+
+ delete 11
+ Inorder : 0 5 10 100 101
+ Preorder : 100 10 0 5 101
+ Postorder : 5 0 10 101 100
+ Level order traversal : 100 10 101 0 5
+
+ delete 5
+ Inorder : 0 10 100 101
+ Preorder : 100 10 0 101
+ Postorder : 0 10 101 100
+ Level order traversal : 100 10 101 0
+
+ delete 0
+ Inorder : 10 100 101
+ Preorder : 100 10 101
+ Postorder : 10 101 100
+ Level order traversal : 100 10 101
+
+ delete 10
+ Inorder : 100 101
+ Preorder : 100 101
+ Postorder : 101 100
+ Level order traversal : 100 101
+
+ delete 100
+ Inorder : 101
+ Preorder : 101
+ Postorder : 101
+ Level order traversal : 101
+
+ delete 101
+ Inorder :
+ Preorder :
+ Postorder :
+ Level order traversal :
+ delete 101
+ Inorder :
+ Preorder :
+ Postorder :
+ Not found 10
+ Level order traversal :
+ */
