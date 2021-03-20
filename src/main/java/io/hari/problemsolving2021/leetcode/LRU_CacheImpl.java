@@ -65,5 +65,19 @@ public class LRU_CacheImpl {
         lruCache.offer(10);lruCache.printAll();
         lruCache.offer(40);lruCache.printAll();
         lruCache.offer(40);lruCache.printAll();
+        lruCache.offer(20);lruCache.printAll();
     }
 }
+
+/**
+ LRU cache data :
+ LRU cache data : 10
+ LRU cache data : 10
+ LRU cache data : 10
+ LRU cache data : 20 10
+ LRU cache data : 30 20 10
+ LRU cache data : 10 20 10
+ LRU cache data : 40 10 20
+ LRU cache data : 40 10 20
+ LRU cache data : 20 10 20
+ */
