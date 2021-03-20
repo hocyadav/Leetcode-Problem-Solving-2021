@@ -1,4 +1,4 @@
-package grab;
+package io.hari.problemsolving2021.grab;
 
 import java.util.PriorityQueue;
 
