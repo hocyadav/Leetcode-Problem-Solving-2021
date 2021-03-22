@@ -1,4 +1,4 @@
-package io.hari.problemsolving2021.leetcode;
+package io.hari.problemsolving2021.linklist;
 
 /**
  * @Author Hariom Yadav
@@ -15,17 +15,17 @@ class LLNode {
 class LLImpl {
     LLNode head;
 
-    public void insertAtFirstPosition(int data) {
+    public void insertAtFirstPosition(int data) {//insert then add null check condition
         LLNode nn = new LLNode(data);
         if (head == null) {//not required
             head = nn;
             return;
         }
-        nn.next = head;
+        nn.next = head;//1
         head = nn;
     }
 
-    public void insertAtLastPosition(int data) {
+    public void insertAtLastPosition(int data) {//insert and thn check null or corner case
         LLNode nn = new LLNode(data);
         if (head == null) {
             head = nn;
@@ -37,7 +37,7 @@ class LLImpl {
         last.next = nn;
     }
 
-    public void insertAfterGivenNode(LLNode prevNode, int data) {
+    public void insertAfterGivenNode(LLNode prevNode, int data) {//insert and then check null
         if (prevNode == null) return; //null check
         LLNode nn = new LLNode(data);
         nn.next = prevNode.next;

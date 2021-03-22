@@ -1,4 +1,4 @@
-package io.hari.problemsolving2021.leetcode;
+package io.hari.problemsolving2021.linklist;
 
 /**
  * @Author Hariom Yadav
