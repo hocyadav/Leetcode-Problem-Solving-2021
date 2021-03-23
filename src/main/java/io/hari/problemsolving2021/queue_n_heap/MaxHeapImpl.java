@@ -40,6 +40,11 @@ public class MaxHeapImpl {
         }
     }
 
+    /**
+     * 1. strore index as largest, & find left, right,
+     * 2. find largest index,
+     * 3. check largest is same or not if not then call swap + heapify
+     */
     private static void heapify(int[] arr, int i, int len) {
         int largest = i;
         int left = i*2 + 1;
