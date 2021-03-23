@@ -3,6 +3,7 @@ package io.hari.problemsolving2021.arrays;
 /**
  * @Author Hariom Yadav
  * @create 23-03-2021
+ * https://www.geeksforgeeks.org/next-greater-element/
  */
 public class NextGreaterElement_usingRainWaterConcept {
     public static void main(String[] args) {
@@ -40,7 +41,7 @@ public class NextGreaterElement_usingRainWaterConcept {
         System.out.println();
     }
 
-    private static void printArray(int[] right) {
+    public static void printArray(int[] right) {
         for (int i = 0; i < right.length; i++) {
             System.out.print(right[i]+" ");
         }
