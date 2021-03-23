@@ -17,6 +17,7 @@ public class MaxDiffBtwNearestLeftRight {
     /**
      * 1 Create left array and right array - using same as Next Greatest Equal concept , just change the Smaller Equal
      * 2 then traverse both array and find abs difference
+     * TC: 3n (3 time traversing), SC : 2n (2 array left and right)
      */
     private static void findNearestLeftAndNearestRight(int[] arr) {
         int[] left = new int[arr.length];
