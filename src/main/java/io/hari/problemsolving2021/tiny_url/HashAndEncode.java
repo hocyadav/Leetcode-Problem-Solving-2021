@@ -54,3 +54,13 @@ public class HashAndEncode {
         System.out.println();
     }
 }
+/**
+ password = password123
+ 112 97 115 115 119 111 114 100 49 50 51
+ md5 output in hex = 482C811DA5D5B4BC6D497FFA98491E38
+
+ name = hariom yadav
+ 104 97 114 105 111 109 32 121 97 100 97 118
+ encode = aGFyaW9tIHlhZGF2
+ nameDecode = hariom yadav
+ */
