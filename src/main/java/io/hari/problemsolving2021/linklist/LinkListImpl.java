@@ -77,7 +77,7 @@ class SinglyLL {
         while (it != null) {// traverse all not null values
             temp = it.next;//4
 
-            it.next = pre;//1
+            it.next = pre;//1 this is actual operation we are doing, other steps are just jumping or moving pointers
             pre = it;//2
 
             it = temp;//3
@@ -122,8 +122,8 @@ class SinglyLL {
         Node fast = head;//2 jump
 
         while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
+            slow = slow.next;//1 step jump
+            fast = fast.next.next;//2 step jump
         }
         System.out.println("mid element val = " + slow.val);
     }
