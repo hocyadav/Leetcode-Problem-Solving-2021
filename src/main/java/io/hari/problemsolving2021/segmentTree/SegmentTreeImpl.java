@@ -25,11 +25,14 @@ class SegmentImlp {
     private Node rec(int[] arr, int start, int end) {
         if (start > end) return null;
 
-        Node root = new Node(start, end);
+        Node root = new Node(start, end);//step1 : create new node, step2 : now find out where to store
+        //where to store logic
         if (start == end) {//leaf
+//            root.left = null; optional
+//            root.right = null;
             root.sum = arr[start];
         } else {
-            int mid = start + (end - start) / 2;
+            int mid = start + (end - start) / 2;//or (start + end) /2
             root.left = rec(arr, start, mid);
             root.right = rec(arr, mid + 1, end);
             root.sum = root.left.sum + root.right.sum;
@@ -40,17 +43,17 @@ class SegmentImlp {
     private Node recSimpleWay(int[] arr, int start, int end) {
         if (start > end) return null;
 
-        Node root = new Node(start, end);
+        Node nn = new Node(start, end);
         if (start == end) {//leaf
-            root.sum = arr[start]; // get sum from array
-            return root;
+            nn.sum = arr[start]; // get sum from array
+            return nn;
         }
         int mid = start + (end - start) / 2;
-        root.left = rec(arr, start, mid);
-        root.right = rec(arr, mid + 1, end);//2. calling left and right
+        nn.left = rec(arr, start, mid);
+        nn.right = rec(arr, mid + 1, end);//2. calling left and right
 
-        root.sum = root.left.sum + root.right.sum;//1 get sum from left and right, and left right not available so call rec
-        return root;
+        nn.sum = nn.left.sum + nn.right.sum;//1 get sum from left and right, and left right not available so call rec
+        return nn;
     }
 
     public void traverseSegmentTree() {//segment tree is BT so we can use inorder traversal
@@ -75,7 +78,7 @@ class SegmentImlp {
         if (root.startIndex == startIndex && root.endIndex == endIndex)//leaf node
             return root.sum;
 
-        int mid = root.startIndex + (root.endIndex - root.startIndex) / 2;
+        int mid = root.startIndex + (root.endIndex - root.startIndex) / 2;//or (start + end )/2
         if (endIndex <= mid) {
             return recSum(root.left, startIndex, endIndex);
         } else if (startIndex >= mid + 1) {
