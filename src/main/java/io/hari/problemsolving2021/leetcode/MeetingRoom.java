@@ -33,10 +33,10 @@ public class MeetingRoom {
     public static void meetingRoom1_(Interval[] intervals) {
         Arrays.sort(intervals, (a, b) -> a.start - b.start);
         for (int i = 1; i < intervals.length; i++) {
-            if (intervals[i].start >= intervals[i - 1].end) {
+            if (intervals[i].start >= intervals[i - 1].end) {//current start is >= previous end
                 continue;
             }
-            if (intervals[i].start < intervals[i - 1].end) {
+            if (intervals[i].start < intervals[i - 1].end) {//negation of above case
                 System.out.println("not possible");
                 return;
             }
