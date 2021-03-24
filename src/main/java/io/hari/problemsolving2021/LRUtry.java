@@ -62,3 +62,10 @@ public class LRUtry {
         lruCache.offer(10);lruCache.print();
     }
 }
+/**
+ LRU cache : 14 12 10
+ LRU cache : 14 12 10
+ LRU cache : 12 14 10
+ LRU cache : 12 14 10
+ LRU cache : 10 12 14
+ */
