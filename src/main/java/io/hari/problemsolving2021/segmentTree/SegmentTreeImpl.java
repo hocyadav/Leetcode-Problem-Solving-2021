@@ -79,11 +79,11 @@ class SegmentImlp {
             return root.sum;
 
         int mid = root.startIndex + (root.endIndex - root.startIndex) / 2;//or (start + end )/2
-        if (endIndex <= mid) {
+        if (endIndex <= mid) { //case1: whole request is present in left side
             return recSum(root.left, startIndex, endIndex);
-        } else if (startIndex >= mid + 1) {
+        } else if (startIndex >= mid + 1) {// case 2: whole request is present in right side
             return recSum(root.right, startIndex, endIndex);
-        } else {
+        } else { //case 3: whole request is present in left + right
             return recSum(root.left, startIndex, mid)
                     + recSum(root.right, mid + 1, endIndex);
         }
