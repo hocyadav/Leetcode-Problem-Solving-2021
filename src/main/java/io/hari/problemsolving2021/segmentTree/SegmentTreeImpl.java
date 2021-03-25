@@ -69,6 +69,7 @@ class SegmentImlp {
     }
 
     public void sumRange(int startIndex, int endIndex) {
+        System.out.print(startIndex + " " + endIndex + " : ");
         final int sum = recSum(root, startIndex, endIndex);
         System.out.println("sum = " + sum);
     }
@@ -88,6 +89,29 @@ class SegmentImlp {
                     + recSum(root.right, mid + 1, endIndex);
         }
     }
+
+    public void updateOldValueInSegmentTree(int index, int newValue) {
+        updateRec(root, index, newValue);
+    }
+
+    /**
+     * leaf node = simply update the value (recursion coming from left rec call or right rec call)
+     * find mid : call left if target index is left side , else right [internally recursion will update sum value]
+     * finally add left sum + right sum [2 cases - its updated, or its not updated ]
+     */
+    private void updateRec(Node root, int index, int newValue) {
+//        if (root == null) return;//null check
+        if (root.startIndex == root.endIndex)
+            root.sum = newValue;
+        else { // else required else null point exception
+            int mid = (root.startIndex + root.endIndex) / 2;
+            //left and right rec will update sum value of left and right node
+            if (index <= mid) updateRec(root.left, index, newValue);
+            else updateRec(root.right, index, newValue);
+            //now we have updated value of left and right nodes, so for current node i.e. root we just add left , right sum values
+            root.sum = root.left.sum + root.right.sum;
+        }
+    }
 }
 
 public class SegmentTreeImpl {
@@ -100,6 +124,9 @@ public class SegmentTreeImpl {
         segmentTree.sumRange(0, 2);
         segmentTree.sumRange(1, 2);
         segmentTree.sumRange(3, 4);
+        segmentTree.sumRange(0, 1);
+        segmentTree.updateOldValueInSegmentTree(0, 10);
+        segmentTree.sumRange(0, 1);
     }
 }
 /**
@@ -112,8 +139,10 @@ public class SegmentTreeImpl {
  3 3 : 5
  3 4 : 8
  4 4 : 3
- sum = 10
- sum = 3
- sum = 2
- sum = 8
+ 1 4 : sum = 10
+ 0 2 : sum = 3
+ 1 2 : sum = 2
+ 3 4 : sum = 8
+ 0 1 : sum = 1
+ 0 1 : sum = 10
  */
