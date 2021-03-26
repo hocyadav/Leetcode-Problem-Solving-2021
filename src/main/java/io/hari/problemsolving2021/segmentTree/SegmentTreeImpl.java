@@ -74,11 +74,18 @@ class SegmentImlp {
         System.out.println("sum = " + sum);
     }
 
+    /**
+     * 1. if matching node then return : matching means input range matches with current root range, [valid for both leaf node and non leaf node]
+     * 2. find mid of segment tree
+     * 3. 3 cases : our request present in left, right or partial [call recursion]
+     */
     private int recSum(Node root, int startIndex, int endIndex) {
         if (root == null) return 0;
-        if (root.startIndex == startIndex && root.endIndex == endIndex)//leaf node
+        if (root.startIndex == startIndex && root.endIndex == endIndex)//any matching node start index n end index or leaf node
             return root.sum;
 
+        //if root node is [1,5] -> [1,2,3,4,5] -> mid = 3, this is mid of current root range not the array request index
+        //then we have 3 case our request lies on left of this mid, or right or left+right both side(i.e. partial)
         int mid = root.startIndex + (root.endIndex - root.startIndex) / 2;//or (start + end )/2
         if (endIndex <= mid) { //case1: whole request is present in left side
             return recSum(root.left, startIndex, endIndex);
@@ -104,7 +111,7 @@ class SegmentImlp {
         if (root.startIndex == root.endIndex)
             root.sum = newValue;
         else { // else required else null point exception
-            int mid = (root.startIndex + root.endIndex) / 2;
+            int mid = (root.startIndex + root.endIndex) / 2; //IMP :current node [1, 5] -> [1, 2, 3, 4, 5] -> mid = 3 -> then it will compare with index and go left or right
             //left and right rec will update sum value of left and right node
             if (index <= mid) updateRec(root.left, index, newValue);
             else updateRec(root.right, index, newValue);
