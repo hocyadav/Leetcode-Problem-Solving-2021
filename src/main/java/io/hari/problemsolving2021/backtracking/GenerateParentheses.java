@@ -1,7 +1,5 @@
 package io.hari.problemsolving2021.backtracking;
 
-import lombok.val;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,13 +11,13 @@ public class GenerateParentheses {
     static List<String> result = new LinkedList<>();
     public static void main(String[] args) {
         final int length = 3;
-        generateParenthesesOfLen(length);
+        generateParenthesesOfLen_usingRecursion(length);
         System.out.println("result = " + result);
-        generateParenthesesOfLen(1);
+        generateParenthesesOfLen_usingRecursion(1);
         System.out.println("result = " + result);
     }
 
-    private static void generateParenthesesOfLen(int len) {
+    private static void generateParenthesesOfLen_usingRecursion(int len) {
         result.clear();
         int leftLen = len;
         int rightLen = len;
