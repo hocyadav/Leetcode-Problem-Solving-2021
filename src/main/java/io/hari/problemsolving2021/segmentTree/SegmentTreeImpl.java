@@ -105,18 +105,18 @@ class SegmentImlp {
 
     /**
      * leaf node = simply update the value (recursion coming from left rec call or right rec call)
-     * find mid : call left if target index is left side , else right [internally recursion will update sum value]
+     * find mid : call left if target indexReq is left side , else right [internally recursion will update sum value]
      * finally add left sum + right sum [2 cases - its updated, or its not updated ]
      */
-    private void updateRec(Node root, int index, int newValue) {
+    private void updateRec(Node root, int indexReq, int newValue) {
 //        if (root == null) return;//null check
         if (root.startIndex == root.endIndex)
             root.sum = newValue;
         else { // else required else null point exception
-            int mid = (root.startIndex + root.endIndex) / 2; //IMP :current node [1, 5] -> [1, 2, 3, 4, 5] -> mid = 3 -> then it will compare with index and go left or right
+            int rootRangeMid = (root.startIndex + root.endIndex) / 2; //IMP :current node [1, 5] -> [1, 2, 3, 4, 5] -> rootRangeMid = 3 -> then it will compare with indexReq and go left or right
             //left and right rec will update sum value of left and right node
-            if (index <= mid) updateRec(root.left, index, newValue);
-            else updateRec(root.right, index, newValue);
+            if (indexReq <= rootRangeMid) updateRec(root.left, indexReq, newValue);
+            else updateRec(root.right, indexReq, newValue);
             //now we have updated value of left and right nodes, so for current node i.e. root we just add left , right sum values
             root.sum = root.left.sum + root.right.sum;
         }
