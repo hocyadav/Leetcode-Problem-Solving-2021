@@ -79,21 +79,23 @@ class SegmentImlp {
      * 2. find mid of segment tree
      * 3. 3 cases : our request present in left, right or partial [call recursion]
      */
-    private int recSum(Node root, int startIndex, int endIndex) {
+    private int recSum(Node root, int arrStartIndexReq, int arrEndIndexReq) {
         if (root == null) return 0;
-        if (root.startIndex == startIndex && root.endIndex == endIndex)//any matching node start index n end index or leaf node
+        if (root.startIndex == arrStartIndexReq && root.endIndex == arrEndIndexReq)//any matching node start index n end index or leaf node
             return root.sum;
 
-        //if root node is [1,5] -> [1,2,3,4,5] -> mid = 3, this is mid of current root range not the array request index
-        //then we have 3 case our request lies on left of this mid, or right or left+right both side(i.e. partial)
-        int mid = root.startIndex + (root.endIndex - root.startIndex) / 2;//or (start + end )/2
-        if (endIndex <= mid) { //case1: whole request is present in left side
-            return recSum(root.left, startIndex, endIndex);
-        } else if (startIndex >= mid + 1) {// case 2: whole request is present in right side
-            return recSum(root.right, startIndex, endIndex);
+        //if root node is [1,5] -> [1,2,3,4,5] -> rootRangeMid = 3, this is rootRangeMid of current root range not the array request index
+        //then we have 3 case our request lies on left of this rootRangeMid, or right or left+right both side(i.e. partial)
+        int rootRangeMid = root.startIndex + (root.endIndex - root.startIndex) / 2;//or (start + end )/2
+        if (arrEndIndexReq <= rootRangeMid) { //case1: whole request is present in left side
+            return recSum(root.left, arrStartIndexReq, arrEndIndexReq);
+        } else if (arrStartIndexReq >= rootRangeMid + 1) {// case 2: whole request is present in right side
+            return recSum(root.right, arrStartIndexReq, arrEndIndexReq);
         } else { //case 3: whole request is present in left + right
-            return recSum(root.left, startIndex, mid)
-                    + recSum(root.right, mid + 1, endIndex);
+            //break our request : arrStart arrEnd index to arrStart , rootRangeMid, arrEnd -> arrstart to rootrangemid, and rootmid to arrend
+            final int leftCall = recSum(root.left, arrStartIndexReq, rootRangeMid);
+            final int rightCall = recSum(root.right, rootRangeMid + 1, arrEndIndexReq);
+            return leftCall + rightCall;
         }
     }
 
