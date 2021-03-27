@@ -3,11 +3,14 @@ package io.hari.problemsolving2021.tapping_rain;
 /**
  * @Author Hariom Yadav
  * @create 27-03-2021
+ * https://leetcode.com/problems/container-with-most-water/
  */
 public class ContainerWithMostWater {
     public static void main(String[] args) {
-        int[] arr = {1,8,6,2,5,4,8,3,7};
+        final int[] arr = {1, 8, 6, 2, 5, 4, 8, 3, 7};
         mostWaterArea(arr);
+        mostWaterArea(new int[]{1,1});
+        mostWaterArea(new int[]{4,3,2,1,4});
     }
 
     /**
@@ -32,3 +35,8 @@ public class ContainerWithMostWater {
         System.out.println(maxArea);
     }
 }
+/**
+ 49
+ 1
+ 16
+ */
