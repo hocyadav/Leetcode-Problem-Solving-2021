@@ -8,7 +8,7 @@ import java.util.PriorityQueue;
  * @create 29-03-2021
  * https://leetcode.com/problems/kth-largest-element-in-an-array/
  */
-public class KthLargestArray {
+public class KthLargestArray {//same as kth largest element in stream
     public static void main(String[] args) {
         final int[] arr = {3, 2, 1, 5, 6, 4};
         kthLargest_usingPQ(arr, 2);// 5
@@ -27,7 +27,7 @@ public class KthLargestArray {
         System.out.println(kthLarget);
     }
 
-    private static void kthLargest_usingPQ(int[] arr, int k) {
+    private static void kthLargest_usingPQ(int[] arr, int k) {//same logic as kth largest in stream
         PriorityQueue<Integer> pq = new PriorityQueue<>(k);
         for (int val : arr) addToPQ(pq, k, val);
 
