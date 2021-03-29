@@ -1,5 +1,6 @@
 package io.hari.problemsolving2021.queue_n_heap;
 
+import java.util.Arrays;
 import java.util.PriorityQueue;
 
 /**
@@ -9,11 +10,23 @@ import java.util.PriorityQueue;
 public class KthLargestArray {
     public static void main(String[] args) {
         final int[] arr = {3, 2, 1, 5, 6, 4};
-        getKthLargest(arr, 2);// 5
-        getKthLargest(new int[]{3,2,3,1,2,4,5,5,6}, 4);// 4
+        kthLargest_usingPQ(arr, 2);// 5
+        kthLargest_usingPQ(new int[]{3,2,3,1,2,4,5,5,6}, 4);// 4
+
+        kthLarget_usingSort(arr, 2);//5
+        kthLarget_usingSort(new int[]{3,2,3,1,2,4,5,5,6}, 4);// 4
     }
 
-    private static void getKthLargest(int[] arr, int k) {
+    private static void kthLarget_usingSort(int[] arr, int k) {
+        Arrays.sort(arr);
+        //add null check optional
+        if (arr.length - k < 0) return;
+
+        final int kthLarget = arr[arr.length - k];
+        System.out.println(kthLarget);
+    }
+
+    private static void kthLargest_usingPQ(int[] arr, int k) {
         PriorityQueue<Integer> pq = new PriorityQueue<>(k);
         for (int val : arr) addToPQ(pq, k, val);
 
@@ -38,6 +51,8 @@ public class KthLargestArray {
 }
 
 /**
+ 5
+ 4
  5
  4
  */
