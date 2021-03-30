@@ -188,7 +188,7 @@ public class WallsAndGate_GraphProblem_n_01Matrix {
     }
 
 
-    private static void print2DArray(int[][] arr) {
+    public static void print2DArray(int[][] arr) {
 //        Arrays.deepToString(arr); //m1
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[0].length; j++) {
