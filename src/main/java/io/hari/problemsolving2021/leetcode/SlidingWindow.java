@@ -7,17 +7,25 @@ package io.hari.problemsolving2021.leetcode;
 public class SlidingWindow {
     public static void main(String[] args) {
         int[] arr = new int[]{1, 2, 3, 4, 1};
-        final int i = slidingSimpleImpl(arr, 3);
-        System.out.println("i = " + i);
+//        final int i = slidingSimpleImpl(arr, 3);
+//        System.out.println("i = " + i);
 
         //todo : given array and sum find length of array that makes sum >= given sum
         // https://www.geeksforgeeks.org/minimum-length-subarray-sum-greater-given-value/
         int[] arr2 = new int[]{1, 4, 45, 6, 10, 19};
         int givenSum = 51;
-        System.out.println("givenSum1 = " + slidingWindowsWithSumGEtoGivenSum(arr2, 51));//4, 45, 6
+//        System.out.println("givenSum1 = " + slidingWindowsWithSumGEtoGivenSum(arr2, 51));//4, 45, 6
 //        System.out.println("givenSum1 = " + slidingWindowsWithSumGEtoGivenSum(arr2, 2));//4
-        System.out.println("givenSum1 = " + slidingWindowsWithSumGEtoGivenSum_singleLoop(arr2, 51));//4, 45, 6
+//        System.out.println("givenSum1 = " + slidingWindowsWithSumGEtoGivenSum_singleLoop(arr2, 51));//4, 45, 6
 //        System.out.println("givenSum1 = " + slidingWindowsWithSumGEtoGivenSum_singleLoop(arr2, 2));//4
+
+        System.out.println("givenSum1 = " + countSubarray(3, 1, new int[]{-1, 3, -1}));//4, 45, 6
+        System.out.println("givenSum1 = " + countSubarray(7, 2, new int[]{2, -1, 3, 0, 1, 2, 1}));//4, 45, 6
+
+        final long l = countSubarray2(3, 1, new int[]{-1, 3, -1});
+//        final long l = countSubarray2(3, 1, new int[]{2, -1, 3, 0, 1, 2, 1});
+        System.out.println("l = " + l);
+
     }
 
     // https://www.geeksforgeeks.org/window-sliding-technique/
@@ -71,7 +79,7 @@ public class SlidingWindow {
     // increasing
     // decreasing
     public static int slidingWindowsWithSumGEtoGivenSum_singleLoop(int[] arr, int givenSum) {
-        int resultMin = Integer.MAX_VALUE;
+        int resultMinLen = Integer.MAX_VALUE;
 
         int localWindowSum = 0;
         int l = 0;
@@ -81,14 +89,59 @@ public class SlidingWindow {
             System.out.println("localWindowSum i = " + localWindowSum);
 
             while (localWindowSum > givenSum && l < r) {
-                resultMin = Math.min(r - l + 1, resultMin);
+                resultMinLen = Math.min(r - l + 1, resultMinLen);
                 localWindowSum -= arr[l];
                 l++;
-                System.out.println("resultMin = " + resultMin);
+                System.out.println("resultMinLen = " + resultMinLen);
                 System.out.println("localWindowSum d = " + localWindowSum);
             }
         }
-        return resultMin;
+
+        return resultMinLen;
+    }
+
+    public static Long countSubarray(int N, int K, int[] A) {
+        int globalCount = 0;
+        int resultMinLen = Integer.MAX_VALUE;
+
+        int localWindowSum = 0;
+        int l = 0;
+
+        for (int r = 0; r < A.length; r++) {
+            localWindowSum += A[r];
+
+            while (l < r) {
+                if (localWindowSum * K == (r - l + 1)) {
+                    globalCount++;
+                }
+                resultMinLen = Math.min(r - l + 1, resultMinLen);
+                localWindowSum -= A[l];
+                l++;
+            }
+        }
+//        System.out.println("count " + globalCount);
+        return Long.valueOf(globalCount);
+    }
+
+    static long countSubarray2(int N, int K, int[] A) {
+        // Write your code here
+        int ans = 0;
+        int dp[] = new int[N];
+        for (int i = 0; i < N; i++) {
+            dp[i] += A[i];
+        }
+        for (int i = 0; i < N; i++) {
+            for (int j = i + 1; j < N; j++) {
+                int sum = dp[j];
+                if (i != 0) {
+                    sum = dp[j] - dp[i - 1];
+                }
+                if (sum * K == j - i + 1) {
+                    ans++;
+                }
+            }
+        }
+        return ans;
     }
 
 }
