@@ -7,7 +7,9 @@ import java.util.*;
 /**
  * @Author Hariom Yadav
  * @create 04-04-2021
+ * rank 6.5k/11.5k
  */
+
 public class TruncateStatement {
 
     @Test
@@ -20,6 +22,8 @@ public class TruncateStatement {
         print1DArray(ans);
         final int[] ans2 = findingUsersActiveMinutes(new int[][]{{1,1},{2,2},{2,3}}, 4);
         print1DArray(ans2);
+//        final int[] ans3 = findingUsersActiveMinutes2(new int[][]{{1,1},{2,2},{2,3}}, 4);
+//        print1DArray(ans3);
     }
 
     private void print1DArray(int[] ans) {
@@ -29,7 +33,10 @@ public class TruncateStatement {
         System.out.println();
     }
 
-    public String truncateSentence(String s, int k) {
+    /**
+     * https://leetcode.com/problems/truncate-sentence/
+     */
+    public String truncateSentence(String s, int k) {//working
         final String[] split = s.split(" ");
         System.out.println("split = " + Arrays.deepToString(split));
         if (split.length < k) return "";
@@ -40,7 +47,10 @@ public class TruncateStatement {
         return sb.substring(0, sb.length() - 1);
     }
 
-    public int[] findingUsersActiveMinutes(int[][] logs, int k) {
+    /**
+     * https://leetcode.com/problems/finding-the-users-active-minutes/
+     */
+    public int[] findingUsersActiveMinutes(int[][] logs, int k) {//working
         Set<String> set = new HashSet<>();
         Map<Integer, Integer> map = new LinkedHashMap<>();
         for (int[] l : logs) {
@@ -60,6 +70,24 @@ public class TruncateStatement {
             final int index = value - 1;
             if (index >= 0) //null check oprional
                 answer[index]++;
+        }
+        return answer;
+    }
+
+    //not able to solve using set only
+    public int[] findingUsersActiveMinutes2(int[][] logs, int k) {
+        Set<String> set = new HashSet<>();
+        for (int[] l : logs) {
+            set.add("" + l[0] +"#"+ l[1]);
+        }
+        System.out.println("set = " + set);
+        int[] answer = new int[k];
+        for (String s : set) {
+            final String[] split = s.split("#");
+            final Integer integer = Integer.valueOf(split[0]);
+            final Integer integer1 = Integer.valueOf(split[1]);
+            answer[integer - 1]++;
+            System.out.println("s1 = " + split[0] +" "+ split[1]);
         }
         return answer;
     }
