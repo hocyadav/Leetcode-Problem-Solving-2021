@@ -10,7 +10,7 @@ import java.util.*;
  * rank 6.5k/11.5k
  */
 
-public class TruncateStatement {
+public class TruncateStatement_and_findingUsersActiveMinutes {
 
     @Test
     public void test() {
