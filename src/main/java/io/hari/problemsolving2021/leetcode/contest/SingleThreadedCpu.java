@@ -20,6 +20,7 @@ public class SingleThreadedCpu {
 
         final int[] order31 = getOrder3(new int[][]{{19, 13}, {16, 9}, {21, 10}, {32, 25}, {37, 4}, {49, 24}, {2, 15}, {38, 41}, {37, 34}, {33, 6}, {45, 4}, {18, 18}, {46, 39}, {12, 24}});
         System.out.println("order31 = " + Arrays.toString(order31));
+        //[6, 1, 2, 9, 4, 10, 0, 11, 5, 13, 3, 8, 12, 7]
 
     }
 
