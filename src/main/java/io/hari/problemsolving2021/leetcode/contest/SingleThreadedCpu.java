@@ -2,9 +2,7 @@ package io.hari.problemsolving2021.leetcode.contest;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * @Author hayadav
@@ -19,6 +17,10 @@ public class SingleThreadedCpu {
 
         final int[] order2 = getOrder(new int[][]{{7, 10}, {7, 12}, {7, 5}, {7, 4}, {7, 2}});
         System.out.println("order2 = " + Arrays.toString(order2));//[4, 3, 2, 0, 1]
+
+        final int[] order31 = getOrder3(new int[][]{{19, 13}, {16, 9}, {21, 10}, {32, 25}, {37, 4}, {49, 24}, {2, 15}, {38, 41}, {37, 34}, {33, 6}, {45, 4}, {18, 18}, {46, 39}, {12, 24}});
+        System.out.println("order31 = " + Arrays.toString(order31));
+
     }
 
     /**
@@ -43,10 +45,11 @@ public class SingleThreadedCpu {
             }
             if (pq.isEmpty()) { //case 1: no task in heap, move time to next task start time
                 currentTime = arr[it][1];//next start time
+                continue;
             } else if (!pq.isEmpty()) {//process single task : case 2: pick one task + execute(store index)
-                final int[] curr = pq.poll();
-                final int index = curr[0];
-                final int processingTime = curr[2];
+                final int[] bestFit = pq.poll();
+                final int index = bestFit[0];
+                final int processingTime = bestFit[2];
 
                 result[resultIndex++] = index;
                 currentTime += processingTime;
@@ -60,6 +63,48 @@ public class SingleThreadedCpu {
             result[resultIndex++] = index;
         }
         return result;
+    }
+
+    class Node {
+        int start;
+        int process;
+        int index;
+
+        public Node(int start, int process, int index) {
+            this.start = start;
+            this.process = process;
+            this.index = index;
+        }
+    }
+
+    public int[] getOrder3(int[][] tasks) {
+        List<Integer> result = new LinkedList<>();
+        int n = tasks.length;
+
+        final List<Node> list = new ArrayList<>();
+        for (int i = 0; i < tasks.length; i++) list.add(new Node(tasks[i][0], tasks[i][1], i));
+        Collections.sort(list, (a, b) -> a.start - b.start);
+
+        PriorityQueue<Node> minHeap = new PriorityQueue<>((a, b) -> a.process == b.process ? a.index - b.index : a.process - b.process);
+        int index = 0, time = 0;
+        while (result.size() < n) {//0 to n, initially size is 0
+            while (index < n && list.get(index).start <= time){
+                minHeap.add(list.get(index));
+                index++;
+            }
+            if (minHeap.isEmpty()) {
+                time = list.get(index).start;
+                continue;
+            }
+            final Node top = minHeap.poll();
+            result.add(top.index);
+            time += top.process;
+        }
+        System.out.println("result = " + result);
+        final Integer[] toArray = result.stream().toArray(Integer[]::new);
+        System.out.println("toArray = " + toArray);
+        final int[] ints = result.stream().mapToInt(x -> x).toArray();
+        return ints;
     }
 
     private int[][] storeIndex(int[][] tasks) {
