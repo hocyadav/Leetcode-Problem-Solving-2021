@@ -36,5 +36,6 @@ public class Contest12thSep {
             lastIndex--;
         }
         return charArray;
+
     }
 }
