@@ -16,6 +16,7 @@ public class OldContestEasy {
 
     }
 
+    //wrong sol
     public int findMiddleIndex(int[] nums) {
         int result = 0;
         int[] left = new int[nums.length + 1];
@@ -41,6 +42,7 @@ public class OldContestEasy {
         return result;
     }
 
+    //correct solution
     public int findMiddleIndex2(int[] nums) {
         int result = 0;
         int[] left = new int[nums.length];
