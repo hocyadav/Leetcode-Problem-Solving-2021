@@ -18,6 +18,10 @@ import java.util.PriorityQueue;
  * // 3. iterate + if even index add data to A, else B
  * // 4. again iterate + if even index poll from A and add to initial array, else poll from B and add to initial array
  * // return initial array
+ *
+ * ref : https://www.geeksforgeeks.org/selection-sort/
+ * MaxHeapImpl.java
+ * https://www.callicoder.com/java-priority-queue/ : see comparator logic
  */
 public class Easy_SortEvenOddIndex {
     @Test
