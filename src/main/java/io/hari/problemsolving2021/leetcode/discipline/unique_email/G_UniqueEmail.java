@@ -31,7 +31,7 @@ public class G_UniqueEmail {
      * - create final email : C + "@" + A
      * - add final string to set
      *
-     * ref :    - java string methods :  replace, replace all, substring, indexOf, regex
+     * ref :    - java string methods :  replace, replace all, substring, indexOf, regex, Pattern class
      *          - regex,  what is meta character ?, literal
      *
      */

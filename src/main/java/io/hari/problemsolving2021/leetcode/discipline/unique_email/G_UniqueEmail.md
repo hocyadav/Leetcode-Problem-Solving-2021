@@ -38,3 +38,19 @@ Credit to @helengu1996 for her link:
 
 "There are two "escapings" going on here. The first backslash is to escape the second backslash for the Java language, to create an actual backslash character. The backslash character is what escapes the + or the s for interpretation by the regular expression engine. That's why you need two backslashes -- one for Java, one for the regular expression engine. With only one backslash, Java reports \s and + as illegal escape characters -- not for regular expressions, but for an actual character in the Java language."
 
+---
+https://stackoverflow.com/questions/30776860/regular-expression-q-e
+
+---
+Check if string contains all strings from array
+- explore 
+```java
+if (Stream.of(keywords).allMatch(word::contains)) {
+    System.out.println("Yes");
+} else {
+    System.out.println("No");
+}
+```
+---
+Why do I need two slashes in Java Regex to find a "+" symbol?
+https://stackoverflow.com/questions/25145793/why-do-i-need-two-slashes-in-java-regex-to-find-a-symbol/25145826#25145826
